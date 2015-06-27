@@ -1,24 +1,40 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Shopname:</strong>
+  <strong>店名:</strong>
   <%= @shop.shopname %>
 </p>
 
 <p>
-  <strong>Telno:</strong>
+  <strong>電話番号:</strong>
   <%= @shop.telno %>
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong>住所:</strong>
   <%= @shop.address %>
 </p>
 
 <p>
-  <strong>Url:</strong>
+  <strong>HP:</strong>
   <%= @shop.url %>
 </p>
 
-<%= link_to 'Edit', edit_shop_path(@shop) %> |
-<%= link_to 'Back', shops_path %>
+<%= link_to '編集', edit_shop_path(@shop) %> |
+<%= link_to '戻る', shops_path %>
+<%= link_to 'レビューを書く', new_shop_review_path(@shop) %>
+<hr>
+
+    <h2>レビュー一覧</h2>
+    <% @shop.reviews.each do |review| %>
+      <p>
+        <%= review.body %> <br><%= review.score %> <br>
+        by <%= review.user.email %>
+      </p>
+    <% end %>
+    <hr>
+    <h2>レビューを残したユーザー一覧</h2>
+    <%# throughオプションのおかげで、BookはReviewを介してUserにアクセスできる  %>
+    <% @shop.users.each do |user| %>
+      <p><%= user.email %></p>
+    <% end %>

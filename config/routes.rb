@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :shops
+  resources :shops do
+    resources :reviews
+  end
   root 'shops#index'
 
   #resources :books
