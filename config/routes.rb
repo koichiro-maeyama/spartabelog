@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :shops do
-    resources :reviews
+    resources :reviews, only: [:new, :create, :destroy]
   end
   root 'shops#index'
 
